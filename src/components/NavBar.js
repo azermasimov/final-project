@@ -4,7 +4,9 @@ import Header from "./Header";
 import history from "../history";
 import LoginPage from "./LoginPage";
 import Cart from "./products/Cart";
-import Products from "./products/Products";
+// import Products from "./products/Products";
+import About from "./About";
+import Contact from "./Contact";
 
 const NavBar = () => {
   return (
@@ -13,9 +15,9 @@ const NavBar = () => {
         <Header />
         <Switch>
           <Route path="/login" component={LoginPage} exact />
-          <Route path="/products" component={Products} exact />
-          {/* <Route path="/about" component={About} /> */}
-          {/* <Route path="/contact" component={Contact} /> */}
+          <Route path="/about" component={About} exact />
+          <Route path="/contact" component={Contact} exact />
+          {/* <Route path="/products" component={Products} exact /> */}
           <Route path="/cart" component={Cart} exact />
         </Switch>
       </Router>

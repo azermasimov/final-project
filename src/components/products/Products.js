@@ -2,17 +2,30 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchProducts } from "../../actions";
 import { addToCart } from "../../actions";
+import LanguageContext from "../../contexts/LanguageContext";
 
 class Products extends Component {
   componentDidMount() {
     this.props.fetchProducts();
   }
 
+  renderAddText({ language }) {
+    return language === "english" ? "Add to Cart" : "Sebete elave et";
+  }
+
+  renderLoadingText({ language }) {
+    return language === "english" ? "Loading..." : "Yuklenir...";
+  }
+
   render() {
     return (
       <div>
         {!this.props.products ? (
-          <div>Loading... </div>
+          <div>
+            <LanguageContext.Consumer>
+              {this.renderLoadingText}
+            </LanguageContext.Consumer>
+          </div>
         ) : (
           <ul>
             {this.props.products.map((product) => (
@@ -21,7 +34,7 @@ class Products extends Component {
                   <a href={"#" + product._id}>
                     <img
                       key={product._id}
-                      src={product.image}
+                      src={this.props.photos.map((photo) => photo.urls.regular)}
                       style={{ width: "150px", height: "190px" }}
                       alt={product.description}
                     />
@@ -30,7 +43,9 @@ class Products extends Component {
                   <div>
                     <div>{`$ ${product.price}`}</div>
                     <button onClick={() => this.props.addToCart(product)}>
-                      Add To Cart
+                      <LanguageContext.Consumer>
+                        {this.renderAddText}
+                      </LanguageContext.Consumer>
                     </button>
                   </div>
                 </div>
