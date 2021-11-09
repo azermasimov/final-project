@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { fetchProducts } from "../../actions";
 import { addToCart } from "../../actions";
 import LanguageContext from "../../contexts/LanguageContext";
+import ProductImage from "./ProductImage";
 
-class Products extends Component {
+class ProductsList extends Component {
   componentDidMount() {
     this.props.fetchProducts();
   }
@@ -32,12 +33,10 @@ class Products extends Component {
               <li key={product._id}>
                 <div>
                   <a href={"#" + product._id}>
-                    <img
-                      key={product._id}
-                      src={this.props.photos.map((photo) => photo.urls.regular)}
-                      style={{ width: "150px", height: "190px" }}
-                      alt={product.description}
-                    />
+                    {this.props.photos.map((photo) => (
+                      <ProductImage key={photo.id} photo={photo} />
+                    ))}
+
                     <p>{product.title}</p>
                   </a>
                   <div>
@@ -62,4 +61,6 @@ const mapStateToProps = (state) => ({
   products: state.products.items,
 });
 
-export default connect(mapStateToProps, { fetchProducts, addToCart })(Products);
+export default connect(mapStateToProps, { fetchProducts, addToCart })(
+  ProductsList
+);

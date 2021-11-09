@@ -4,8 +4,10 @@ import {
   FETCH_PRODUCTS,
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  CREATE_DATA,
 } from "./types";
 import products from "../apis/products";
+import history from "../history";
 
 export const signIn = (userId) => {
   return {
@@ -54,4 +56,12 @@ export const removeFromCart = (product) => (dispatch, getState) => {
   );
   dispatch({ type: REMOVE_FROM_CART, payload: { cartItems } });
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+};
+
+// Functions For Admin Page.............................................................
+export const createProduct = (formValues) => async (dispatch, getState) => {
+  const { data } = await products.post("/", { ...formValues });
+
+  dispatch({ type: CREATE_DATA, payload: data });
+  history("/admin");
 };

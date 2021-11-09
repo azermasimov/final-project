@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
-import Products from "./products/Products";
+import ProductsList from "./products/ProductsList";
 import SearchBar from "./products/SearchBar";
 import unsplash from "../apis/unsplash";
 import { LanguageStore } from "../contexts/LanguageContext";
 import LanguageSelector from "./LanguageSelector";
+import Cart from "./products/Cart";
 
 class App extends Component {
   state = {
@@ -25,14 +26,16 @@ class App extends Component {
     return (
       <div>
         <LanguageStore>
+          <NavBar />
           <div>
             <LanguageSelector />
           </div>
-          <NavBar />
           <SearchBar onSubmit={this.onSearchSubmit} />
+
           {this.state.photos.length > 0 ? (
-            <Products photos={this.state.photos} />
+            <ProductsList photos={this.state.photos} />
           ) : null}
+          <Cart />
         </LanguageStore>
       </div>
     );

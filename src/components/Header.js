@@ -27,34 +27,40 @@ class Header extends Component {
     return (
       <div>
         <nav>
-          <ul>
-            <li>
-              <Link to="/">
-                <h1>E-commerce App</h1>
-              </Link>
-            </li>
-            <li>
+          <Link to="/">
+            <h1>E-commerce App</h1>
+          </Link>
+          <ul
+            style={{
+              float: "right",
+              listStyleType: "none",
+              textAlign: "center",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <li style={{ display: "inline", margin: "10px" }}>
               <Link to="/products">
                 <LanguageContext.Consumer>
                   {this.renderProductText}
                 </LanguageContext.Consumer>
               </Link>
             </li>
-            <li>
+            <li style={{ display: "inline", margin: "10px" }}>
               <Link to="/about">
                 <LanguageContext.Consumer>
                   {this.renderAboutText}
                 </LanguageContext.Consumer>
               </Link>
             </li>
-            <li>
+            <li style={{ display: "inline", margin: "10px" }}>
               <Link to="/contact">
                 <LanguageContext.Consumer>
                   {this.renderContactText}
                 </LanguageContext.Consumer>
               </Link>
             </li>
-            <li>
+            <li style={{ display: "inline", margin: "10px" }}>
               <button>
                 <Link to="/login">
                   <LanguageContext.Consumer>
@@ -63,7 +69,7 @@ class Header extends Component {
                 </Link>
               </button>
             </li>
-            <li>
+            <li style={{ display: "inline", margin: "10px" }}>
               <button>
                 <Link to="/cart">
                   <LanguageContext.Consumer>
