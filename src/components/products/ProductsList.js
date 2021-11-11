@@ -34,7 +34,7 @@ class ProductsList extends Component {
                 <div>
                   <a href={"#" + product._id}>
                     {this.props.photos.map((photo) => (
-                      <ProductImage key={photo.id} photo={photo} />
+                      <ProductImage key={photo.urls.regular} photo={photo} />
                     ))}
 
                     <p>{product.title}</p>
